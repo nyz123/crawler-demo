@@ -1,0 +1,33 @@
+[INFO  - 2019-03-05T08:52:01.351Z] GhostDriver - Main - running on port 56373
+[INFO  - 2019-03-05T08:52:03.405Z] Session [f259fde0-3f23-11e9-bd51-17225ace7b55] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2019-03-05T08:52:03.405Z] Session [f259fde0-3f23-11e9-bd51-17225ace7b55] - page.customHeaders:  - {}
+[INFO  - 2019-03-05T08:52:03.405Z] Session [f259fde0-3f23-11e9-bd51-17225ace7b55] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-10-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2019-03-05T08:52:03.406Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: f259fde0-3f23-11e9-bd51-17225ace7b55
+[ERROR - 2019-03-05T08:54:03.957Z] Session [f259fde0-3f23-11e9-bd51-17225ace7b55] - page.onError - msg: TypeError: undefined is not an object (evaluating 'bhr1x.addCallback')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2019-03-05T08:54:03.958Z] Session [f259fde0-3f23-11e9-bd51-17225ace7b55] - page.onError - stack:
+  (anonymous function) (https://s3.music.126.net/web/s/core_54ff22a294ff5b383e7dcd011fc8256c.js?54ff22a294ff5b383e7dcd011fc8256c:135)
+  forEach (:0)
+  be3x (https://s3.music.126.net/web/s/core_54ff22a294ff5b383e7dcd011fc8256c.js?54ff22a294ff5b383e7dcd011fc8256c:17)
+  (anonymous function) (https://s3.music.126.net/web/s/core_54ff22a294ff5b383e7dcd011fc8256c.js?54ff22a294ff5b383e7dcd011fc8256c:135)
+  (anonymous function) (https://s3.music.126.net/web/s/core_54ff22a294ff5b383e7dcd011fc8256c.js?54ff22a294ff5b383e7dcd011fc8256c:1)
+  Vr7k (https://s3.music.126.net/web/s/core_54ff22a294ff5b383e7dcd011fc8256c.js?54ff22a294ff5b383e7dcd011fc8256c:25)
+  (anonymous function) (https://s3.music.126.net/web/s/core_54ff22a294ff5b383e7dcd011fc8256c.js?54ff22a294ff5b383e7dcd011fc8256c:1)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2019-03-05T08:55:10.284Z] Session [f259fde0-3f23-11e9-bd51-17225ace7b55] - page.onError - msg: TypeError: undefined is not an object (evaluating 'bhr1x.addCallback')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2019-03-05T08:55:10.285Z] Session [f259fde0-3f23-11e9-bd51-17225ace7b55] - page.onError - stack:
+  (anonymous function) (https://s3.music.126.net/web/s/core_54ff22a294ff5b383e7dcd011fc8256c.js?54ff22a294ff5b383e7dcd011fc8256c:135)
+  forEach (:0)
+  be3x (https://s3.music.126.net/web/s/core_54ff22a294ff5b383e7dcd011fc8256c.js?54ff22a294ff5b383e7dcd011fc8256c:17)
+  (anonymous function) (https://s3.music.126.net/web/s/core_54ff22a294ff5b383e7dcd011fc8256c.js?54ff22a294ff5b383e7dcd011fc8256c:135)
+  (anonymous function) (https://s3.music.126.net/web/s/core_54ff22a294ff5b383e7dcd011fc8256c.js?54ff22a294ff5b383e7dcd011fc8256c:1)
+  Vr7k (https://s3.music.126.net/web/s/core_54ff22a294ff5b383e7dcd011fc8256c.js?54ff22a294ff5b383e7dcd011fc8256c:25)
+  (anonymous function) (https://s3.music.126.net/web/s/core_54ff22a294ff5b383e7dcd011fc8256c.js?54ff22a294ff5b383e7dcd011fc8256c:1)
+
+  phantomjs://platform/console++.js:263 in error
+[INFO  - 2019-03-05T08:57:01.467Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2019-03-05T09:02:01.513Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
