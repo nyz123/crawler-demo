@@ -18,7 +18,7 @@ driver = webdriver.PhantomJS()
 
 csv_file = open('../data/playlist.csv','w')
 writer = csv.writer(csv_file)
-writer.writerow(['标题','链接','播放数'])
+writer.writerow(['标题','播放数','链接',])
 # 解析每一页，直到下一页为空
 page = 1
 while url != 'javascript:void(0)':
@@ -44,4 +44,3 @@ while url != 'javascript:void(0)':
     url = driver.find_element_by_css_selector('a.zbtn.znxt').get_attribute('href')
     page = page + 1
 csv_file.close()
-
