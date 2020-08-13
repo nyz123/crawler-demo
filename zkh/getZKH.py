@@ -3,6 +3,15 @@ import csv
 import requests
 import urllib.request
 import os
+import random
+
+def generate_random_str(randomlength=4):
+  random_str = ''
+  base_str = 'ABCDEFGHIGKLMNOPQRSTUVWXYZabcdefghigklmnopqrstuvwxyz0123456789'
+  length = len(base_str) - 1
+  for i in range(randomlength):
+    random_str += base_str[random.randint(0, length)]
+  return random_str
 
 def get_data():   
 
@@ -38,7 +47,7 @@ def get_data():
 
             page = 0
             total = 0
-            while page <= 0: # total
+            while page <= 10: # total
                 page += 1
                 req = {
                     'from': page,
@@ -73,8 +82,7 @@ def get_data():
                             specificationList = pro['specificationList'] # 属性
                             proImgPath_Z1 = pro['proImgPath_Z1']
                             for ii in range(len(proImgPath_Z1)):
-                                index = ii
-                                img_path = img_dir + '\\'+ proSkuNo + str(index) + '.jpg'
+                                img_path = img_dir + '\\'+ proSkuNo + '_' + generate_random_str() + '.jpg'
                                 download_img(proImgPath_Z1[ii],img_path)
                             specs = ''
                             for s in range(len(specificationList)):
