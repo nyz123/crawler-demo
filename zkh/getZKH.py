@@ -33,18 +33,18 @@ def get_data():
     writer.writerow(['品名','一级目录','二级目录','三级目录','四级目录', '品牌', '价格', '单位', '商品型号', '订货编码','发货期','规格参数'])
 
     writer_over1000 = csv.writer(csv_over1000_file)
-    writer_over1000.writerow(['crmId','一级目录','二级目录','三级目录','总页数'])
+    writer_over1000.writerow(['crmId','三级目录','总页数'])
 
     cate_res =  requests.get(cate_url)
     cate_json = json.loads(cate_res.text)
     # 遍历 1 级分类
-    for i in range(len(cate_json)): # len(cate_json)
+    for i in range(8,len(cate_json)): # len(cate_json)
         firstCatalog = cate_json[i]['firstCatalog']
         childrenCatalog = cate_json[i]['childrenCatalog']
 
         # 遍历 2 级分类
-        for j in range(len(childrenCatalog)): # len(childrenCatalog)           
-            for k in range(len(childrenCatalog[j]['children'])): #len(childrenCatalog[j].children)
+        for j in range(8,len(childrenCatalog)): # len(childrenCatalog)           
+            for k in range(3,len(childrenCatalog[j]['children'])): #len(childrenCatalog[j].children)
                 child_cate = childrenCatalog[j]['children'][k]
                 catalogName = child_cate['catalogName']
                 crmId = child_cate['crmId']
@@ -76,8 +76,8 @@ def get_data():
                             pro_content = pro_json['page']['content']
                             if page == 1:
                                 total = min(pro_json['page']['totalPages'],300)
-                            if total == 300:
-                                writer_over1000.writerow([crmId,catalogName,pro_json['page']['totalPages']])
+                                if total == 300:
+                                    writer_over1000.writerow([crmId,catalogName,pro_json['page']['totalPages']])
                             for pro in pro_content:
                                 # 写入文档：品名 目录 品牌 价格 单位 商品型号 订货编码
                                 proSkuProductName = pro['proSkuProductName'] 
