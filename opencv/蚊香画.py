@@ -1,20 +1,32 @@
 # -*- coding:utf-8 -*-
 import cv2
 import numpy as np
+import math
 
 #读取图片
-img = cv2.imread("../picture/niu.jpg", cv2.IMREAD_UNCHANGED)
-rows, cols, chn = img.shape
-r = min(rows,cols)/2
-print('高，列：',rows,cols,chn,r)
-# for i in r:    
-    # x = np.random.randint(0, rows) 
-    # y = np.random.randint(0, cols)    
-    # img[x,y,:] = 255
+src = cv2.imread("../picture/niu.jpg", cv2.IMREAD_UNCHANGED)
+img = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
+rows, cols, chn = src.shape
+D = min(rows,cols)
+R = math.floor(D/2)
+point = [rows/2,cols/2]
+
+v = 20
+
+print('高，列：',rows,cols,chn,R)
+print(img[0,0])
+
+for i in range(0,rows):
+    for j in range(0,cols):
+        dis = math.sqrt(math.pow(i-point[0],2)+math.pow(j-point[1],2))
+        remainder = dis%20
+        if(dis > R or remainder>10):
+            img[i,j] = 255
 
 
-cv2.imshow("蚊香画", img)
-           
-#等待显示
+# cv2.imshow("wenxiang", img)
+
+cv2.imwrite('../picture/wenxiang.jpg',img)
+
 cv2.waitKey(0)
 cv2.destroyAllWindows()
