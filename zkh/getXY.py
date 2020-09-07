@@ -37,7 +37,7 @@ def get_data(url):
     writer.writerow(['品名','一级目录','二级目录','三级目录','类别（四级）', '品牌', '型号', '价格', '单位', '订货编码','发货期','规格参数'])
 
     # 647,1147 1147,1647  2903
-    for i in range(1647,2903): #len(tree_li)
+    for i in range(0,647): #len(tree_li)
         cate_name = tree_li[i].text
         cate_href = tree_li[i].a.attrs['href']
         print(cate_name,cate_href)
