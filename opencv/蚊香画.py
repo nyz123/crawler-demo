@@ -6,7 +6,7 @@ import math
 # 定义变量
 X0 = 20
 PI = math.pi
-W_white = W_black = 10
+W_white = W_black = 4
 path = 'e:\\xie\\crawler-demo\\picture\\niu.jpg'
 
 def get_distance(p1,p2):
@@ -14,18 +14,33 @@ def get_distance(p1,p2):
 
 def is_on_arc1(p):
     dis = get_distance([0,0],p)
+    if p[0]==0:
+        return False
     arc = math.atan(p[1]/p[0])
     res = dis + arc*X0/(2*PI) - X0*math.floor(dis/X0+1)
     return res<=W_white and res>=W_white*(-1)
 
 def is_on_arc(p):
-    dis = get_distance([0,0],p)
-    arc = math.atan(p[1]/p[0])
-    f = math.floor(dis/X0+1) * 2 * PI
-    l = dis/(f-arc)
-    m = X0/(2*PI)
-    r = (dis - 2*3) / (f-arc)
-    return m < l and m > r
+    r = get_distance([0,0],p)
+    if p[0]==0:
+        if p[1]>0:
+            arc = 0.5*PI
+        elif p[1]<=0:
+            arc = -0.5*PI
+        else:
+            arc = 0
+    else:
+        arc = math.atan(p[1]/p[0])
+    if arc>0 and p[0]<0:  
+        arc = PI + arc
+    elif arc < 0 and p[0]<0:
+        arc = PI + arc
+    elif arc < 0 and p[0]>0:
+        arc = 2 * PI +arc
+
+    res = r - X0 * (math.floor(r/X0) + arc/(2*PI)) 
+    return res>=-1 * W_white and res<=W_white
+
 
 def get_data():
     #读取图片
@@ -39,12 +54,11 @@ def get_data():
     print('高，列：',rows,cols,chn,R)
     print(point,R,math.floor(point[0]-R),math.floor(point[0]+R),math.floor(point[1]-R),math.floor(point[1]+R))
     
-    return
     for i in range(math.floor(point[0]-R),math.floor(point[0]+R)):
         for j in range(math.floor(point[1]-R),math.floor(point[1]+R)):
             y = int(i - point[0])
             x = int(j - point[1])
-            if(x!=0 and y!=0 and get_distance([0,0],[x,y])<=R and is_on_arc1([x,y])):
+            if(get_distance([0,0],[x,y])<=R and is_on_arc([x,y])):
                 img[i,j] = 255
 
     cv2.imshow("wenxiang", img)
