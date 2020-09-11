@@ -27,7 +27,6 @@ def get_data():
     v = 20
 
     print('高，列：',rows,cols,chn,R)
-    print(img[0,0])
 
     for i in range(0,rows):
         for j in range(0,cols):
