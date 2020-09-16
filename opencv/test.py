@@ -1,47 +1,41 @@
-# -*- coding:utf-8 -*-
+#-*-coding:utf8-*-
+__author__ = '万壑'
+
+import os
 import cv2
-import numpy as np
-import math
+import time
+from read_img import readAllImg
 
-X0 = 20
+#从源路径中读取所有图片放入一个list，然后逐一进行检查，把其中的脸扣下来，存储到目标路径中
+def readPicSaveFace(sourcePath,objectPath,*suffix):
+    try:
+        #读取照片,注意第一个元素是文件名
+        resultArray=readAllImg(sourcePath,*suffix)
 
+        #对list中图片逐一进行检查,找出其中的人脸然后写到目标文件夹下
 
-def is_on_arc(p):
-    # d  =  r- ( [r/x0+1] * 2pi-arctany/x ) * x0 / 2pi
-    # 0<d<4 
-    # r=sqrt(x^+y^)
-    r = math.sqrt(math.pow(p[0],2)+math.pow(p[1],2))
-    arc = math.atan(p[1]/p[0])
-    d = r - ((math.floor(r/X0 + 1) * 2 * math.pi - arc) * X0 /(2*math.pi))
-    return d>=0 and d<= 4
+        count = 1
+        face_cascade = cv2.CascadeClassifier('E:\openCV\opencv\sources\data\haarcascades\haarcascade_frontalface_alt.xml')
+        for i in resultArray:
+            if type(i) != str:
 
-def get_data():
-    #读取图片
-    src = cv2.imread("../picture/niu.jpg", cv2.IMREAD_UNCHANGED)
-    img = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
-    rows, cols, chn = src.shape
-    D = min(rows,cols)
-    R = math.floor(D/2)
-    point = [rows/2,cols/2]
+              gray = cv2.cvtColor(i, cv2.COLOR_BGR2GRAY)
+              faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+              for (x, y, w, h) in faces:
 
-    v = 20
+                listStr = [str(int(time.time())), str(count)]  #以时间戳和读取的排序作为文件名称
+                fileName = ''.join(listStr)
 
-    print('高，列：',rows,cols,chn,R)
-
-    for i in range(0,rows):
-        for j in range(0,cols):
-            dis = math.sqrt(math.pow(i-point[0],2)+math.pow(j-point[1],2))
-            remainder = dis%20
-            if(dis > R or remainder>10):
-                img[i,j] = 255
+                f = cv2.resize(gray[y:(y + h), x:(x + w)], (200, 200))
+                cv2.imwrite(objectPath+os.sep+'%s.jpg' % fileName, f)
+                count += 1
 
 
-    # cv2.imshow("wenxiang", img)
+    except IOError:
+        print "Error"
 
-    cv2.imwrite('../picture/wenxiang.jpg',img)
+    else:
+        print 'Already read '+str(count-1)+' Faces to Destination '+objectPath
 
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-
-if __name__ =='main':
-    get_data()
+if __name__ == '__main__':
+     readPicSaveFace('D:\myProject\pictures\source-jerry','D:\myProject\pictures\picTest','.jpg','.JPG','png','PNG')
