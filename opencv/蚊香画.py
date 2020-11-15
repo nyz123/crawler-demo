@@ -7,18 +7,10 @@ import math
 X0 = 20
 PI = math.pi
 W_white = W_black = 4
-path = 'e:\\xie\\crawler-demo\\picture\\niu.jpg'
+path = 'F:\\xdl\\github\\crawler-demo\\picture\\niu.jpg'
 
 def get_distance(p1,p2):
     return math.sqrt(math.pow(p1[0]-p2[0],2)+math.pow(p1[1]-p2[1],2))
-
-def is_on_arc1(p):
-    dis = get_distance([0,0],p)
-    if p[0]==0:
-        return False
-    arc = math.atan(p[1]/p[0])
-    res = dis + arc*X0/(2*PI) - X0*math.floor(dis/X0+1)
-    return res<=W_white and res>=W_white*(-1)
 
 def is_on_arc(p):
     r = get_distance([0,0],p)
