@@ -3,14 +3,15 @@ import numpy as np
 
 NUM = 6
 A = [
-    [3,2,0,0,0,0],
-    [-1,3,2,0,0,0],
-    [0,-1,3,2,0,0],
-    [0,0,-1,3,2,0],
-    [0,0,0,-1,3,2],
-    [0,0,0,0,-1,3],
+    [2,-1,0,0,0,0],
+    [-1,3,-2,0,0,0],
+    [0,-1,2,-1,0,0],
+    [0,0,-3,5,2,0],
+    [0,0,0,1,3,2],
+    [0,0,0,0,-2,1],
 ]
-D = [7,11,15,9,1,8]
+# X = [3,2,1,5,1,2]
+D = [4,1,-5,24,12,0]
 
 def get_base(A):#获得一个基，在上面修改得到答案
     base=list(np.zeros((len(A),len(A))))
@@ -51,19 +52,19 @@ def getX(A,U,Y):
     X = np.zeros((NUM))
     X[NUM-1] = Y[NUM-1]/U[NUM-1][NUM-1]
     for i in range(NUM-2,-1,-1):
-        X[i] = (Y[i]-A[i-1][i]*X[i+1])/U[i][i]
+        X[i] = (Y[i]-U[i][i+1]*X[i+1])/U[i][i]
     return X
 
 def calc(A,D):
     lu = getLU(A)
     L = lu[0]
     U = lu[1]
-    # print('L:',L)
-    # print('U:',U)
+    print('L:',L)
+    print('U:',U)
     Y = getY(D,L)
-    # print(Y)
+    print('Y:',Y)
     X = getX(A,U,Y)
-    print(X)
+    print('X:',X)
     return 
 
 if __name__ == '__main__':
