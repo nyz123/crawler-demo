@@ -37,7 +37,8 @@ def get_data(url):
     writer.writerow(['品名','一级目录','二级目录','三级目录','类别（四级）', '品牌', '型号', '价格', '单位', '订货编码','发货期','规格参数'])
 
     # 647,1147 1147,1647  2903
-    for i in range(0,647): #len(tree_li)
+    # 1000,2931
+    for i in range(0,1000): #len(tree_li)
         cate_name = tree_li[i].text
         cate_href = tree_li[i].a.attrs['href']
         print(cate_name,cate_href)
@@ -105,9 +106,9 @@ def get_data(url):
                     p_sku = p_skus[0].text
 
                 # 下载图片
-                p_img_path = file_path + '//'+cate_name1+'//'+p_sku+'.jpg'
-                if not Path(p_img_path).exists() and len(p_img)>0:
-                    download_img(p_img,p_img_path)
+                # p_img_path = file_path + '//'+cate_name1+'//'+p_sku+'.jpg'
+                # if not Path(p_img_path).exists() and len(p_img)>0:
+                #     download_img(p_img,p_img_path)
                 print(p_name)
 
                 p_attrs =  products[j].select('.product-parameter li') # 属性
