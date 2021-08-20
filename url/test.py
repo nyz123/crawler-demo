@@ -11,7 +11,7 @@ file_path = 'F:\\xdl\\github\\crawler-demo\\url\\imgs\\'
 headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0'}
 
 def get_data(url):
-    response = requests.get(url)
+    response = requests.get(url,headers=headers)
     soup = BeautifulSoup(response.text,'html.parser',from_encoding='utf-8')
     print(soup.title)
     product_cate = soup.select('.crumbs>a')
